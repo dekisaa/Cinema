@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row ">
+    <div class="col-sm-auto col-md-15 col-lg-15 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <form class="text-center border border-light p-5" action="#!" (ngSubmit)="onSubmit()" [formGroup]="projectionForm">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th  mat-sort-header="date" scope="col">Date</th>
+              <th mat-sort-header="price" scope="col">Price</th>
+              <th mat-sort-header="numberOfFreeCards" scope="col">Number Of Free Cards</th>
+              <th mat-sort-header="hall" scope="col">Hall</th>
+              <th mat-sort-header="movie" scope="col">Movie</th>
+              <th mat-sort-header="movie" scope="col">Reserve Cards</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr >
+
+              <td><input size="40" type="text" id="date" class="form-control mb-4"  formControlName="date"></td>
+              <td ><input type="text" id="price" class="form-control mb-4" formControlName="price"></td>
+              <td ><input type="text" id="numberOfFreeCards" class="form-control mb-4" formControlName="numberOfFreeCards"></td>
+              <td ><input type="text" id="hall" class="form-control mb-4" formControlName="hall"></td>
+              <td ><input type="text" id="movie" class="form-control mb-4" formControlName="movie"></td>
+              <td><input *ngIf="noCards()"  min="1" type="number" id="description" class="form-control mb-4" (change)="changeReserve($event)" formControlName="numberOfReservedCardsFront" placeholder="Number of Cards"></td>
+              <td><button *ngIf="noCards()" class="btn btn-warning" type="submit" data-toggle="modal" data-target="#exampleModal">Reserve</button></td>
+
+            </tr>
+            </tbody>
+          </table>
+          </form>
+          <div class="modal-footer">
+          <a [routerLink]="['/search']" class="btn btn-secondary">Back on Search</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

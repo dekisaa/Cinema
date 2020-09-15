@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row ">
+    <div class="col-sm-auto col-md-15 col-lg-15 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <table class="table table-hover" >
+            <thead>
+            <tr>
+              <th  mat-sort-header="created" scope="col">Created</th>
+              <th mat-sort-header="reservedCards" scope="col">Num of reserved Cards</th>
+              <th mat-sort-header="Movie" scope="col">Movie</th>
+              <th mat-sort-header="time" scope="col">Time of movie</th>
+              <th mat-sort-header="cancel" scope="col">Cancel</th>
+              <th mat-sort-header="cancel" scope="col">Confirm</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let reservation of reservations">
+              <td>{{reservation.created}}</td>
+              <td >{{reservation.numOfCards}}</td>
+              <td >{{reservation.projection.movie.name}}</td>
+              <td >{{reservation.projection.date}}</td>
+              <td><button *ngIf="!reservation.bought" class="btn btn-warning" type="button" (click)="cancel(reservation.id)">Cancel</button></td>
+              <td><button *ngIf="!reservation.bought" class="btn btn-info" type="button" (click)="buy(reservation.id)">Buy</button></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

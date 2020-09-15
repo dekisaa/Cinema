@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row ">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <form class="form-signin" [formGroup]="managerForm" (ngSubmit)="onSubmit()">
+            <h5 class="card-title text-center">Add manager</h5>
+            <input type="text" id="firstName" class="form-control mb-4" placeholder="First Name" [formControlName]="'firstName'" >
+            <input type="text" id="lastName" class="form-control mb-4" placeholder="Last Name" [formControlName]="'lastName'">
+            <input type="text" id="phone" class="form-control mb-4" placeholder="Phone" [formControlName]="'phone'">
+            <input type="email" id="email" class="form-control mb-4" placeholder="E-mail" [formControlName]="'email'">
+            <input type="date" id="dateOfBirth" class="form-control mb-4" [formControlName]="'birthDay'">
+            <input type="username" id="username" class="form-control mb-4" placeholder="Username" [formControlName]="'username'">
+            <input type="password" id="password" class="form-control mb-4" placeholder="Password" [formControlName]="'password'">
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" >
+              Add
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">First Name</th>
+    <th scope="col">Last Name</th>
+    <th scope="col">Phone</th>
+    <th scope="col">Email</th>
+    <th scope="col">BirthDay</th>
+    <th scope="col">Username</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let manager of managers">
+    <td>{{manager.firstName}}</td>
+    <td>{{manager.lastName}}</td>
+    <td>{{manager.phone}}</td>
+    <td>{{manager.email}}</td>
+    <td>{{manager.birthDay}}</td>
+    <td>{{manager.username}}</td>
+    <td><button *ngIf="!manager.active" type="button" class="btn btn-success"  (click)="enable(manager.id)">Enable</button>&nbsp;
+      <button *ngIf="manager.active" type="button" class="btn btn-danger"  (click)="disable(manager.id)">Disable</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

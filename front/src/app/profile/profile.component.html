@@ -1,0 +1,51 @@
+
+<div class="container">
+  <div class="row ">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <form class="text-center border border-light p-5" action="#!" (ngSubmit)="onSubmit()" [formGroup]="profile">
+          <p class="h4 mb-4">My Profile</p>
+          <input type="text" id="firstName" class="form-control mb-4" placeholder="First Name" formControlName="firstName" >
+          <input type="text" id="lastName" class="form-control mb-4" placeholder="Last Name"  formControlName="lastName"  >
+          <input type="text" id="phone" class="form-control mb-4" placeholder="Phone" formControlName="phone" >
+          <input type="email" id="email" class="form-control mb-4" placeholder="E-mail" formControlName="email" >
+          <input type="date" id="dateOfBirth" class="form-control mb-4" formControlName="birthday" >
+          <input type="username" id="username" class="form-control mb-4"  placeholder="Username" formControlName="username" >
+          <button class="btn btn-warning my-4" type="button" data-toggle="modal" data-target="#exampleModal3"> Change password</button>
+          <select class="form-control" id="exampleFormControlSelect1" (change)="changeRole($event)" formControlName="role"  >
+            <option *ngFor = "let r of rolesFront "  [ngValue]="r.name">{{r.name}}</option>
+          </select>
+
+          <button class="btn btn-info btn-block my-4" type="edit">Edit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel3">Cinema Halls</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div >
+          <form class="text-center border border-light p-5" action="#!" [formGroup]="newPass" >
+            <input type="password" id="capacity" class="form-control mb-4" placeholder="New Password"  [formControlName]="'currentPass'">
+            <input type="password" id="hallName" class="form-control mb-4" placeholder="Repeat password" [formControlName]="'newPass'">
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="newPassword()" >Save</button>
+      </div>
+    </div>
+  </div>
+</div>

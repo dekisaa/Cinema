@@ -1,0 +1,103 @@
+
+<div class="container">
+  <div class="row ">
+    <div class="col-sm-auto col-md-15 col-lg-15 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+            <form class="text-center border border-light p-5" action="#!" (ngSubmit)="onSubmit()" [formGroup]="searchForm">
+              <td>
+                <input type="text" id="name" class="form-control mb-4" [formControlName]="'name'" placeholder="Movie Name">
+              </td>
+              <td>
+                <input type="text" id="description" class="form-control mb-4" [formControlName]="'description'" placeholder="Description">
+              </td>
+              <td>
+              <select class="form-control" id="exampleFormControlSelect1" [formControlName]="'genre'">
+                <option disabled selected value>Genre</option>
+                <option value="ACTION">Action</option>
+                <option value="COMEDY">Comedy</option>
+              </select>
+            </td>
+              <td>
+                <select class="form-control" id="exampleFormControlSelect3" [formControlName]="'rating'">
+                  <option disabled selected value>Rating from</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </td>
+              <td>
+                <button class="btn btn-info btn-block my-4" type="submit">Search</button>
+              </td>
+            </form>
+          <form class="text-center border border-light p-5" action="#!" [formGroup]="dates">
+
+            <td>
+              <input type="number" id="price" class="form-control mb-4" (change)="changePrice($event)" formControlName="price" placeholder="price from">
+            </td>
+              <td>
+                <input type="datetime-local" id="startDate" class="form-control mb-4" (change)="changeStart($event)" formControlName="startDate" placeholder="Start Date">
+              </td>
+              <td>
+                <input type="datetime-local" id="endDate" class="form-control mb-4" (change)="changeEnd($event)" formControlName="endDate" placeholder="End Date">
+              </td>
+          </form>
+          <table  id="dtBasicExample" class="table table-striped table-bordered table-sm dataTable" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+              <th   class="th-sm sorting" scope="col">Name<a [routerLink]="" (click)="aName()">A</a>/<a [routerLink]="" (click)="dName()">D</a></th>
+              <th  class="th-sm" scope="col">Description<a [routerLink]="" (click)="aDescription()">A</a>/<a [routerLink]="" (click)="dDescription()">D</a></th>
+              <th  class="th-sm" scope="col">Genres<a [routerLink]="" (click)="aGenre()">A</a>/<a [routerLink]="" (click)="dGenre()">D</a></th>
+              <th  class="th-sm" scope="col">Duration<a [routerLink]="" (click)="aDuration()">A</a>/<a [routerLink]="" (click)="dDuration()">D</a></th>
+              <th  scope="col">Schedules</th>
+              <th  class="th-sm" scope="col">Rating<a [routerLink]="" (click)="aRating()">A</a>/<a [routerLink]="" (click)="dRating()">D</a></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let movie of movies">
+              <td>{{movie.name}}</td>
+              <td >{{movie.description}}</td>
+              <td >{{movie.genre}}</td>
+              <td >{{movie.duration}}</td>
+              <td><button class="btn btn-warning" type="button" data-toggle="modal" data-target="#exampleModal" (click)="schedules(movie.id)">Schedules</button></td>
+              <td >{{movie.rating}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Movie Schedule</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th scope="col">Schedules</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let projection of movieIdProjections">
+            <a class="nav-link" [routerLink]="['/resservations']" [queryParams]="{id: projection.id}" data-dismiss="modal">{{projection.date}}</a>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
